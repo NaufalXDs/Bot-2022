@@ -1,0 +1,42 @@
+const {
+    MessageEmbed,
+    Client,
+    Message
+} = require("discord.js");
+const config = require("../../botconfig/config.json");
+const ee = require("../../botconfig/embed.json");
+const settings = require("../../botconfig/settings.json");
+module.exports = {
+    name: "",
+    category: "",
+    usage: "",
+    aliases: [],
+    description: "",
+    cooldown: 1,
+    memberpermissions: [],
+    requiredroles: [],
+    alloweduserids: [],
+
+    run: async (client, message, args) => {},
+};
+
+//ready
+
+client.on('ready', () => {
+  const arrayOfStatus = [
+    `${client.guilds.cache.size} Server`
+    `$help <command>`
+    `${client.guilds.GUILD_MEMBERS}`
+  ];
+
+  let index = 0;
+  setInterval(() => {
+    if(index === arrayOfStatus.length) index = 0;
+    const status = arrayOfStatus[index];
+    console.log(status);
+    client.user.activity(status, { type: "WATCHING" }).catch(console.error)
+    index++;
+  }, 5000);
+})
+
+//last
